@@ -1,0 +1,164 @@
+* {
+    margin: 0;
+    box-sizing: border-box;
+    font-family: "Poppins" ,system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif
+}
+
+::-webkit-scrollbar {
+    display: none;
+}
+
+header {
+    display: flex;
+    justify-content: center;
+    padding: 20px 15px;
+    background-color: #FFCB05;
+    position: sticky;
+    top: 0;
+}
+
+.logo {
+    display: flex;
+    gap: 15px;
+    align-items: center;
+    text-align: center;
+}
+
+.logo p {
+    font-size: 1.7rem;
+    font-weight: 800;
+    color: #2e5da3;
+}
+
+.background {
+    display: flex;
+    flex-direction: column;
+    margin: 0 auto;
+    width: 90%;
+    height: 100vh;
+    background-color: #5e90db8a;
+    padding: 20px 30px;
+    padding: 0px 20%;
+}
+
+.background h1 {
+    margin-top: 1.4rem;
+    font-size: 2.3rem;
+    text-align: center;
+    padding: 5px;
+    color: #FFCB05;
+}
+
+::placeholder {
+        color: #FFCB05;
+        opacity: 0.5;
+    } 
+
+.background input {
+    margin-top: 0.5rem;
+    font-size: 1.4rem;
+    background-color: #2e5da3;
+    border: 2px solid #FFCB05;
+    padding: 10px 20px;
+    border-radius: 5px;
+    color: #FFCB05;
+    font-weight: bold;
+    width: 70%;
+    height: 85%;
+}
+
+.background input:focus {
+    outline: none;
+}
+
+.barraPesquisa {
+    display: flex;
+    gap: 10px;
+}
+
+.background button {
+    display: flex;
+    gap: 0.5rem;
+    justify-content: center;
+    align-items: center;
+    margin-top: 0.5rem;
+    margin-bottom: 2rem;
+    font-weight: bold;
+    background-color: #FFCB05;
+    font-size: 1.4rem;
+    padding: 10px 20px;
+    border: 2px solid #FFCB05;
+    border-radius: 5px;
+    color: #2e5da3;
+    transition: 0.1s ease;
+}
+
+.background button:hover {
+    cursor: pointer;
+    background-color: #2e5da3;
+    color: #FFCB05;
+    transition: 0.1s ease;
+}
+
+#pesquisar {
+    width: 100%;
+}
+
+#aleatorio {
+    width: 30%;
+    height: 85%;
+    padding: 0px;
+    gap: 1rem;
+    background-color: #2e5da3;
+    font-size: 1.4rem;
+    color: #FFCB05;
+    border: 2px solid #FFCB05;
+}
+
+#aleatorio:hover {
+    background-color: #FFCB05;
+    font-size: 1.4rem;
+    color: #2e5da3;
+    border: 2px solid #FFCB05;
+}
+
+body {
+    background-color: #2e5da3;
+    margin: 0 auto;
+}
+
+#resultado {
+    background-color: #2e5da3;
+    padding: 20px;
+    border: 2px solid #FFCB05;
+    border-radius: 7px;
+    min-height: 60vh;
+}
+
+#resultado h2 {
+    font-size: 2rem;
+    text-transform: uppercase;
+    color: white;
+    margin-bottom: 1rem;
+}
+
+#resultado p {
+    color: white;
+    font-size: 1.5rem;
+}
+
+.images {
+    margin-top: 1.5rem;
+    display: flex;
+    gap: 1rem;
+}
+
+#resultado #aviso {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    font-weight: bold;
+    color: #FFCB05;
+}

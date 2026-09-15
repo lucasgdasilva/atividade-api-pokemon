@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/x-icon" href="assets/icon.png">
+    <title>Pokémon Finder</title>
+   <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<header>
+    <div class="logo">
+        <img src="assets/logo.png" alt="Pokémon Logo" width="120">
+        <p>Finder</p>
+    </div>
+</header>
+<body>
+    <div class="background">
+        <h1>Search Pokémon</h1>
+
+        <div class="barraPesquisa">
+            <input type="text" id="nome" placeholder="Pokémon Name or ID">
+            <button id="aleatorio" onclick="pokemonAleatorio()">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-dice-5-fill" viewBox="0 0 16 16"><path d="M3 0a3 3 0 0 0-3 3v10a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3V3a3 3 0 0 0-3-3zm2.5 4a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0m8 0a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0M12 13.5a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3M5.5 12a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0M8 9.5a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3"/></svg>
+                Random
+            </button>  
+        </div>
+        <button id="pesquisar" onclick="buscarPokemon()">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16"><path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0"/></svg>
+            Search
+        </button>
+
+        <div id="resultado">
+            <p id="aviso"></p>
+        </div>
+    </div>
+<script>
+    async function buscarPokemon() {
+        const nome = document.getElementById('nome').value.toLowerCase().trim();
+        const aviso = document.getElementById('aviso');
+        const resultado = document.getElementById('resultado');
+        const randomId = Math.floor(Math.random() * 1025) + 1;
+
+        resultado.innerHTML = '';
+        
+        if (nome === "") {
+            aviso.textContent = 'Please enter a Pokémon name.';
+    
+            resultado.innerHTML = '<p id="aviso">Please enter a Pokémon name.</p>'; 
+            return;
+        }
+
+        try {
+            const resposta = await fetch('https://pokeapi.co/api/v2/pokemon/' + nome);
+
+            if (!resposta.ok) {
+                resultado.innerHTML = `<p id="aviso">Pokémon not found. <br>Error: ${resposta.status}</p>`;
+                return;
+            }
+
+            const dados = await resposta.json();
+
+            resultado.innerHTML = `
+                <h2>${dados.name.toUpperCase()}</h2>
+                <p>Pokémon ID: ${dados.id}</p>
+                <p>Height: ${dados.height}</p>
+                <p>Weight: ${dados.weight}</p>
+                <div class="images">
+                    <div class="default">
+                        <p>Default:</p>
+                        <img src="${dados.sprites.other["official-artwork"].front_default}" width="200" alt="${dados.name}">
+                    </div>
+                    <div class="shiny">
+                        <p>Shiny:</p>
+                        <img src="${dados.sprites.other["official-artwork"].front_shiny}" width="200" alt="${dados.name} Shiny">
+                    </div>
+                </div>
+            `;
+        } catch (error) {
+            resultado.innerHTML = `<p id="aviso">Network error. Please try again later.</p>`;
+        }
+    }
+
+    async function pokemonAleatorio() {
+        const nome = document.getElementById('nome').value.toLowerCase().trim();
+        const aviso = document.getElementById('aviso');
+        const resultado = document.getElementById('resultado');
+        const randomId = Math.floor(Math.random() * 1025) + 1;
+
+        resultado.innerHTML = '';
+    
+        try {
+            const resposta = await fetch('https://pokeapi.co/api/v2/pokemon/' + randomId);
+
+            if (!resposta.ok) {
+                resultado.innerHTML = `<p id="aviso">Pokémon not found. <br>Error: ${resposta.status}</p>`;
+                return;
+            }
+
+            const dados = await resposta.json();
+
+            resultado.innerHTML = `
+                <h2>${dados.name.toUpperCase()}</h2>
+                <p>Pokémon ID: ${dados.id}</p>
+                <p>Height: ${dados.height}</p>
+                <p>Weight: ${dados.weight}</p>
+                <div class="images">
+                    <div class="default">
+                        <p>Default:</p>
+                        <img src="${dados.sprites.other["official-artwork"].front_default}" width="200" alt="${dados.name}">
+                    </div>
+                    <div class="shiny">
+                        <p>Shiny:</p>
+                        <img src="${dados.sprites.other["official-artwork"].front_shiny}" width="200" alt="${dados.name} Shiny">
+                    </div>
+                </div>
+            `;
+        } catch (error) {
+            resultado.innerHTML = `<p id="aviso">Network error. Please try again later.</p>`;
+        }
+    }
+</script>
+</body>
+</html>
