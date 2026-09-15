@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" type="image/x-icon" href="assets/icon.png">
-    <title>Pokémon Finder</title>
+    <title>Buscador de Pokémon</title>
    <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
@@ -12,28 +12,28 @@
 </head>
 <header>
     <div class="logo">
-        <img src="assets/logo.png" alt="Pokémon Logo" width="120">
-        <p>Finder</p>
+        <p>Buscador</p>
+        <img src="assets/logo.png" alt="Pokémon Logo" width="100">
     </div>
 </header>
 <body>
     <div class="background">
-        <h1>Search Pokémon</h1>
+        <h1>Pesquisar Pokémon</h1>
 
         <div class="barraPesquisa">
-            <input type="text" id="nome" placeholder="Pokémon Name or ID">
+            <input type="text" id="nome" placeholder="Nome ou ID do Pokémon">
             <button id="aleatorio" onclick="pokemonAleatorio()">
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-dice-5-fill" viewBox="0 0 16 16"><path d="M3 0a3 3 0 0 0-3 3v10a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3V3a3 3 0 0 0-3-3zm2.5 4a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0m8 0a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0M12 13.5a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3M5.5 12a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0M8 9.5a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3"/></svg>
-                Random
+                Aleatório
             </button>  
         </div>
         <button id="pesquisar" onclick="buscarPokemon()">
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16"><path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0"/></svg>
-            Search
+            Pesquisar
         </button>
 
         <div id="resultado">
-            <p id="aviso"></p>
+            <p id="aviso">Pesquise pelo nome de um Pokémon.</p>
         </div>
     </div>
 <script>
@@ -46,9 +46,9 @@
         resultado.innerHTML = '';
         
         if (nome === "") {
-            aviso.textContent = 'Please enter a Pokémon name.';
+            aviso.textContent = 'Por favor, informe um nome válido.';
     
-            resultado.innerHTML = '<p id="aviso">Please enter a Pokémon name.</p>'; 
+            resultado.innerHTML = '<p id="aviso">Por favor, informe um nome válido.</p>'; 
             return;
         }
 
@@ -56,30 +56,26 @@
             const resposta = await fetch('https://pokeapi.co/api/v2/pokemon/' + nome);
 
             if (!resposta.ok) {
-                resultado.innerHTML = `<p id="aviso">Pokémon not found. <br>Error: ${resposta.status}</p>`;
+                resultado.innerHTML = `<p id="aviso">Pokémon não encontrado. <br>Erro: ${resposta.status}</p>`;
                 return;
             }
 
             const dados = await resposta.json();
 
             resultado.innerHTML = `
-                <h2>${dados.name.toUpperCase()}</h2>
-                <p>Pokémon ID: ${dados.id}</p>
-                <p>Height: ${dados.height}</p>
-                <p>Weight: ${dados.weight}</p>
-                <div class="images">
-                    <div class="default">
-                        <p>Default:</p>
+                <div class="dados">
+                    <h2>${dados.name.toUpperCase()}</h2>
+                    <p class="id">ID do Pokémon: ${dados.id}</p>
+                    <p class="height">Altura: ${dados.height}</p>
+                    <p class="weight">Peso: ${dados.weight}</p>
+                    <p class="exp">Experiência base: ${dados.base_experience}</p>
+                </div>
+                <div class="imagem">
                         <img src="${dados.sprites.other["official-artwork"].front_default}" width="200" alt="${dados.name}">
-                    </div>
-                    <div class="shiny">
-                        <p>Shiny:</p>
-                        <img src="${dados.sprites.other["official-artwork"].front_shiny}" width="200" alt="${dados.name} Shiny">
-                    </div>
                 </div>
             `;
         } catch (error) {
-            resultado.innerHTML = `<p id="aviso">Network error. Please try again later.</p>`;
+            resultado.innerHTML = `<p id="aviso">Erro de rede. Tente novamente mais tarde.</p>`;
         }
     }
 
@@ -95,30 +91,26 @@
             const resposta = await fetch('https://pokeapi.co/api/v2/pokemon/' + randomId);
 
             if (!resposta.ok) {
-                resultado.innerHTML = `<p id="aviso">Pokémon not found. <br>Error: ${resposta.status}</p>`;
+                resultado.innerHTML = `<p id="aviso">Pokémon não encontrado. <br>Erro: ${resposta.status}</p>`;
                 return;
             }
 
             const dados = await resposta.json();
 
             resultado.innerHTML = `
-                <h2>${dados.name.toUpperCase()}</h2>
-                <p>Pokémon ID: ${dados.id}</p>
-                <p>Height: ${dados.height}</p>
-                <p>Weight: ${dados.weight}</p>
-                <div class="images">
-                    <div class="default">
-                        <p>Default:</p>
-                        <img src="${dados.sprites.other["official-artwork"].front_default}" width="200" alt="${dados.name}">
-                    </div>
-                    <div class="shiny">
-                        <p>Shiny:</p>
-                        <img src="${dados.sprites.other["official-artwork"].front_shiny}" width="200" alt="${dados.name} Shiny">
-                    </div>
+                <div class="dados">
+                    <h2>${dados.name.toUpperCase()}</h2>
+                    <p class="id">ID do Pokémon: ${dados.id}</p>
+                    <p class="height">Altura: ${dados.height}</p>
+                    <p class="weight">Peso: ${dados.weight}</p>
+                    <p class="exp">Experiência base: ${dados.base_experience}</p>
+                </div>
+                <div class="imagem">
+                    <img src="${dados.sprites.other["official-artwork"].front_default}" width="200" alt="${dados.name}">
                 </div>
             `;
         } catch (error) {
-            resultado.innerHTML = `<p id="aviso">Network error. Please try again later.</p>`;
+            resultado.innerHTML = `<p id="aviso">Erro de rede. Tente novamente mais tarde.</p>`;
         }
     }
 </script>

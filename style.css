@@ -11,10 +11,11 @@
 header {
     display: flex;
     justify-content: center;
-    padding: 20px 15px;
+    padding: 15px 10px;
     background-color: #FFCB05;
     position: sticky;
     top: 0;
+    box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.3);
 }
 
 .logo {
@@ -35,7 +36,7 @@ header {
     flex-direction: column;
     margin: 0 auto;
     width: 90%;
-    height: 100vh;
+    height: 120vh;
     background-color: #5e90db8a;
     padding: 20px 30px;
     padding: 0px 20%;
@@ -55,16 +56,15 @@ header {
     } 
 
 .background input {
-    margin-top: 0.5rem;
-    font-size: 1.4rem;
+    font-size: 1.2rem;
     background-color: #2e5da3;
     border: 2px solid #FFCB05;
-    padding: 10px 20px;
+    padding: 7px 17px;
     border-radius: 5px;
     color: #FFCB05;
     font-weight: bold;
     width: 70%;
-    height: 85%;
+    box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.3);
 }
 
 .background input:focus {
@@ -74,6 +74,8 @@ header {
 .barraPesquisa {
     display: flex;
     gap: 10px;
+    margin-top: 0.8rem;
+    margin-bottom: 0.5rem;
 }
 
 .background button {
@@ -81,16 +83,19 @@ header {
     gap: 0.5rem;
     justify-content: center;
     align-items: center;
-    margin-top: 0.5rem;
-    margin-bottom: 2rem;
     font-weight: bold;
     background-color: #FFCB05;
-    font-size: 1.4rem;
-    padding: 10px 20px;
+    font-size: 1.2rem;
+    padding: 10px 17px;
     border: 2px solid #FFCB05;
     border-radius: 5px;
     color: #2e5da3;
     transition: 0.1s ease;
+    box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.3);
+}
+
+.background #pesquisar {
+    margin-bottom: 2rem;
 }
 
 .background button:hover {
@@ -106,40 +111,60 @@ header {
 
 #aleatorio {
     width: 30%;
-    height: 85%;
-    padding: 0px;
+    padding: 10px 17px;
     gap: 1rem;
     background-color: #2e5da3;
-    font-size: 1.4rem;
+    font-size: 1.2rem;
     color: #FFCB05;
     border: 2px solid #FFCB05;
 }
 
 #aleatorio:hover {
     background-color: #FFCB05;
-    font-size: 1.4rem;
+    font-size: 1.2rem;
     color: #2e5da3;
     border: 2px solid #FFCB05;
 }
 
 body {
     background-color: #2e5da3;
+    background: repeating-linear-gradient(45deg, #25549c 0, #25549c 26px, #2e5da3 26px, #2e5da3 52px);
     margin: 0 auto;
 }
 
 #resultado {
+    display: flex;
+    justify-content: space-between;
     background-color: #2e5da3;
     padding: 20px;
     border: 2px solid #FFCB05;
     border-radius: 7px;
-    min-height: 60vh;
+    height: fit-content;
+    box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.3);
+}
+
+.dados {
+    width: 50%;
+}
+
+.imagem {
+    background-color: #4474bc;
+    border: 2px solid #FFCB05;
+    border-bottom: 10px solid #FFCB05;
+    border-radius: 5px;
+    padding: 10px;
+    width: 50%;
+}
+
+.imagem img {
+    width: 100%;
+    height: 100%;
 }
 
 #resultado h2 {
-    font-size: 2rem;
+    font-size: 2.5rem;
     text-transform: uppercase;
-    color: white;
-    margin-bottom: 1rem;
+    color: #FFCB05;
 }
 
 #resultado p {
@@ -147,17 +172,15 @@ body {
     font-size: 1.5rem;
 }
 
-.images {
-    margin-top: 1.5rem;
-    display: flex;
-    gap: 1rem;
+#resultado .id {
+    font-size: 1.3rem;
+    color: #FFCB05;
+    margin-bottom: 1.5rem;
 }
 
 #resultado #aviso {
     height: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    margin: 0 auto;
     text-align: center;
     font-weight: bold;
     color: #FFCB05;
