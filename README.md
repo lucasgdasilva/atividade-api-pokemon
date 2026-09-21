@@ -28,3 +28,5 @@ Se preferir, pressione o botão "Aleatório", que retornará um Pokémon qualque
 
 Durante o desenvolvimento, o principal problema que tive foi obter os dados das imagens do Pokémon. Isso porque na PokéAPI, várias imagens de diversos tipos de Pokémon são fornecidas.
 Para resolver, eu busquei mais a fundo e consegui identificar qual imagem eu precisava, e com a ajuda do Professor Éwerton, consegui implementar o código que busca a imagem corretamente.
+
+![Print da tela funcionando](imagem.png)
